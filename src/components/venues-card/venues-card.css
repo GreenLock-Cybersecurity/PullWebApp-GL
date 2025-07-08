@@ -1,0 +1,44 @@
+.venues-card-container {
+    width: 50%;
+
+    background-color: var(--backgroundColor);
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: row;
+
+}
+
+.venues-card-container>img {
+    height: 150px;
+    width: 150px;
+
+    object-fit: cover;
+    border-radius: 10px 0 0 10px;
+
+    margin-right: 20px;
+}
+
+.venue-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    color: white;
+
+    padding: 10px 0;
+}
+
+.venue-info>.title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.venue-info>div>.extra-info {
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 5px 0 0 0;
+
+    color: var(--light-color-gray);
+}

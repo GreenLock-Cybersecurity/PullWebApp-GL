@@ -1,0 +1,119 @@
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    width: 100%;
+
+    height: 7vh;
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 1.5vh 0;
+
+    background-color: var(--background-color-shadow);
+}
+
+.nav-content {
+    width: 50%;
+    height: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-content>.nav-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: row;
+
+    gap: 2vw;
+}
+
+.nav-content>.nav-options>a,
+.nav-content>.profile-settings>a {
+    color: white;
+    font-weight: 500;
+    font-size: 1.1rem;
+
+    padding: .3vh .5vw;
+
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-content>.nav-options>a.active,
+.nav-content>.profile-settings>a.active {
+    background-color: rgb(128, 128, 128, .3);
+
+
+    border-radius: 5px;
+}
+
+.nav-content>.nav-options>a:hover,
+.nav-content>.profile-settings>a:hover {
+    background-color: rgb(128, 128, 128, .5);
+
+
+    border-radius: 5px;
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    nav {
+        display: none;
+    }
+}
+
+/* Móviles grandes */
+@media (min-width: 481px) and (max-width: 600px) {
+    .nav-content {
+        width: 90%;
+    }
+
+    .nav-content>.nav-options>a,
+    .nav-content>.profile-settings>a {
+        font-size: 0.9rem;
+    }
+
+    img {
+        width: 40px !important;
+    }
+
+}
+
+/* Tablets */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .nav-content {
+        width: 85%;
+    }
+
+    .nav-content>.nav-options>a,
+    .nav-content>.profile-settings>a {
+        font-size: 1rem;
+    }
+
+    img {
+        width: 50px !important;
+    }
+
+}
+
+/* Tablets */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .nav-content {
+        width: 75%;
+    }
+
+    img {
+        width: 50px !important;
+    }
+}
+
+/* Escritorio */
+@media (min-width: 1025px) {}
