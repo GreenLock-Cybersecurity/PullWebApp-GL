@@ -29,10 +29,10 @@ export const NavBar = () => {
             <div className="nav-content">
                 <NavLink to={"/home"}><img src={PullLogo} alt='Pull logo' height={60} /></NavLink>
                 <div className="nav-options">
-                    <NavLink to={"/venues"} className={getPageNumber() === 0 ? 'active' : ''}>Venues</NavLink>
-                    <NavLink to={"/events"} className={getPageNumber() === 1 ? 'active' : ''}>Events</NavLink>
-                    <NavLink to={"/wallet"} className={getPageNumber() === 2 ? 'active' : ''}>Wallet</NavLink>
-                    <NavLink to={"/aboutUs"} className={getPageNumber() === 3 ? 'active' : ''}>About Us</NavLink>
+                    <NavLink to={"/venues"} end className={getPageNumber() === 0 ? 'active' : ''}>Venues</NavLink>
+                    <NavLink to={"/events"} end className={getPageNumber() === 1 ? 'active' : ''}>Events</NavLink>
+                    <NavLink to={"/wallet"} end className={getPageNumber() === 2 ? 'active' : ''}>Wallet</NavLink>
+                    <NavLink to={"/aboutUs"} end className={getPageNumber() === 3 ? 'active' : ''}>About Us</NavLink>
                 </div>
                 <div className="profile-settings">
                     <NavLink to={"/signIn"} className={getPageNumber() === 4 ? 'active' : ''}>Sign In</NavLink>

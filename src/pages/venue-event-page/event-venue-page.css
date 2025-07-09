@@ -1,0 +1,349 @@
+.event-venue-container {
+    width: 100%;
+
+    min-height: 81vh;
+
+    background-color: #101010;
+
+    padding: 2vh 0;
+
+    display: flex;
+
+    flex-direction: row;
+    align-items: stretch;
+
+    gap: 1vw;
+}
+
+.event-venue-container>.left-side-container,
+.event-venue-container>.right-side-container {
+    max-width: 25%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 2vh;
+}
+
+.event-venue-container>.middle-container {
+    max-width: 50%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 2vh;
+}
+
+.event-venue-container>.left-side-container>img {
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.event-venue-container>.left-side-container>h2,
+.event-venue-container>.middle-container>h2 {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+
+    width: 75%;
+    text-align: center;
+}
+
+.event-venue-container>.middle-container>h2 {
+    display: none;
+}
+
+.event-venue-container>.left-side-container>.location-info {
+    width: 75%;
+    color: var(--light-color-gray);
+    font-size: 0.9rem;
+    font-weight: 400;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 1vh;
+}
+
+.event-venue-container>.left-side-container>.location-info>p {
+    margin: 0;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5vw;
+}
+
+.direction-link {
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 400;
+
+    padding: 2px 15px;
+
+    background-color: var(--light-color-gray);
+
+    width: 50%;
+
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5vw;
+
+}
+
+.right-side-container>.right-side-header {
+    width: 75%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 1vh;
+
+    padding-top: 4vh;
+}
+
+.right-side-container>.right-side-header>.title {
+    color: var(--light-color-gray);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.right-side-container>.right-side-header>p {
+    color: var(--light-color-gray);
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin: 0;
+}
+
+.right-side-container>.venue-info {
+    width: 75%;
+
+    color: var(--light-color-gray);
+    font-size: 0.9rem;
+    font-weight: 400;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 1vh;
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    .event-venue-container>.middle-container>h2 {
+        display: flex;
+        justify-content: center;
+
+        position: sticky;
+
+        top: 2vh;
+        z-index: 10;
+
+        background-color: var(--backgroundColor);
+
+        padding: 5px 20px;
+        border-radius: 5px;
+
+        width: fit-content;
+    }
+
+    .event-venue-container {
+        flex-direction: column;
+        align-items: center;
+
+        width: 100%;
+    }
+
+    .event-venue-container>.left-side-container {
+        order: 2;
+        max-width: 90%;
+    }
+
+    .event-venue-container>.right-side-container {
+        order: 3;
+        max-width: 90%;
+
+    }
+
+    .event-venue-container>.middle-container {
+        order: 1;
+        max-width: 90%;
+    }
+
+    .event-venue-container>.left-side-container>img {
+        min-width: 90px;
+        min-height: 90px;
+        max-height: 90px;
+
+        border-radius: 50%;
+
+        margin: 2vh 0;
+    }
+
+    .event-venue-container>.left-side-container>.location-info {
+        justify-content: center;
+        align-items: center;
+
+        gap: 1.5vh;
+    }
+
+    .event-venue-container>.left-side-container>.location-info>a {
+        width: fit-content;
+    }
+
+    .event-venue-container>.left-side-container>.location-info>p {
+        text-align: center;
+    }
+}
+
+/* Móviles grandes */
+@media (min-width: 481px) and (max-width: 600px) {
+    .event-venue-container>.middle-container>h2 {
+        display: flex;
+        justify-content: center;
+
+        position: sticky;
+
+        top: 11vh;
+        z-index: 10;
+
+        background-color: var(--backgroundColor);
+
+        padding: 5px 20px;
+        border-radius: 5px;
+
+        width: fit-content;
+    }
+
+    .event-venue-container {
+        flex-direction: column;
+        align-items: center;
+
+        width: 100%;
+    }
+
+    .event-venue-container>.left-side-container {
+        order: 2;
+        max-width: 90%;
+    }
+
+    .event-venue-container>.right-side-container {
+        order: 3;
+        max-width: 90%;
+
+    }
+
+    .event-venue-container>.middle-container {
+        order: 1;
+        max-width: 90%;
+    }
+
+    .event-venue-container>.left-side-container>img {
+        min-width: 90px;
+        min-height: 90px;
+        max-height: 90px;
+
+        border-radius: 50%;
+
+        margin: 2vh 0;
+    }
+
+    .event-venue-container>.left-side-container>.location-info {
+        justify-content: center;
+        align-items: center;
+
+        gap: 1.5vh;
+    }
+
+    .event-venue-container>.left-side-container>.location-info>a {
+        width: fit-content;
+    }
+
+    .event-venue-container>.left-side-container>.location-info>p {
+        text-align: center;
+    }
+}
+
+/* Tablets */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .event-venue-container>.middle-container>h2 {
+        display: flex;
+        justify-content: center;
+
+        position: sticky;
+
+        top: 11vh;
+        z-index: 10;
+
+        background-color: var(--backgroundColor);
+
+        padding: 5px 20px;
+        border-radius: 5px;
+
+        width: fit-content;
+    }
+
+    .event-venue-container {
+        flex-direction: column;
+        align-items: center;
+
+        width: 100%;
+    }
+
+    .event-venue-container>.left-side-container {
+        order: 2;
+        max-width: 75%;
+    }
+
+    .event-venue-container>.right-side-container {
+        order: 3;
+        max-width: 75%;
+
+    }
+
+    .event-venue-container>.middle-container {
+        order: 1;
+        max-width: 75%;
+    }
+
+    .event-venue-container>.left-side-container>img {
+        min-width: 110px;
+        min-height: 110px;
+        max-height: 110px;
+
+        border-radius: 50%;
+
+        margin: 2vh 0;
+    }
+
+    .event-venue-container>.left-side-container>h2 {
+        display: none;
+    }
+
+    .event-venue-container>.left-side-container>.location-info {
+        justify-content: center;
+        align-items: center;
+
+        gap: 1.5vh;
+    }
+
+    .event-venue-container>.left-side-container>.location-info>a {
+        width: fit-content;
+    }
+
+    .event-venue-container>.left-side-container>.location-info>p {
+        text-align: center;
+    }
+
+}

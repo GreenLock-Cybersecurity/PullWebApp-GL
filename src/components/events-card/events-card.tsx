@@ -3,10 +3,10 @@ import type { Event } from "../../pages/events-page/events-page";
 import { CalendarIcon, ClockIcon, LocationIcon, HangerIcon } from '../../icons/icons';
 import { InfoComponent } from './info-component';
 
-export const EventCard = ({ event }: { event: Event }) => {
+export const EventCard = ({ event, isVenueEventPage }: { event: Event, isVenueEventPage?: boolean }) => {
 
     return (
-        <div className="event-card">
+        <div className={isVenueEventPage ? "event-card venue-event-card" : "event-card"}>
             <img src={event.imageUrl} alt={event.name} width={120} height={160} />
             <div className="event-info">
                 <div className="header-info">

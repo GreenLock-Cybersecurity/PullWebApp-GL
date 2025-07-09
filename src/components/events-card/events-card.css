@@ -11,6 +11,10 @@
 
 }
 
+.venue-event-card {
+    width: 100%;
+}
+
 .event-card>img {
     object-fit: cover;
     border-radius: 10px 0 0 10px;
@@ -128,6 +132,10 @@
     .event-extra-info {
         display: none;
     }
+
+    .venue-event-card {
+        width: 100%;
+    }
 }
 
 /* Móviles grandes */
@@ -155,9 +163,12 @@
         font-size: .7rem;
     }
 
+    .venue-event-card {
+        width: 100%;
+    }
+
 
 }
-
 
 /* Tablets */
 @media (min-width: 601px) and (max-width: 1024px) {
@@ -188,6 +199,7 @@
         gap: 1.5vh;
     }
 
-
-
+    .venue-event-card {
+        width: 100%;
+    }
 }
