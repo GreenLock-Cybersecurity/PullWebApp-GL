@@ -11,8 +11,8 @@ export const EventCard = ({ event }: { event: Event }) => {
             <div className="event-info">
                 <div className="header-info">
                     <p className='title'>{event.name}</p>
-                    <p className='date'><CalendarIcon strokeColor='white' /> {event.date}</p>
                 </div>
+                <p className='date'><CalendarIcon strokeColor='white' /> {event.date}</p>
                 <div className="event-extra-info">
                     <InfoComponent icon={<ClockIcon strokeColor={'var(--light-color-gray)'} />} text={`${event.openingTime} - ${event.closingTime}`} />
                     <InfoComponent icon={<LocationIcon strokeColor={'var(--light-color-gray)'} />} text={event.venueName} />

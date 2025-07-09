@@ -7,6 +7,8 @@
     display: flex;
     flex-direction: row;
 
+    position: relative;
+
 }
 
 .event-card>img {
@@ -60,7 +62,7 @@
     gap: 5px;
 }
 
-.event-info>.header-info>.date {
+.event-info>.date {
     width: fit-content;
 
     display: flex;
@@ -76,4 +78,116 @@
     font-size: 1rem;
     font-weight: 400;
     color: var(--light-color-gray);
+
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+
+    margin: 0;
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    .event-card {
+        width: 95%;
+        margin: 0 auto;
+    }
+
+    .event-card>img {
+        min-height: 80px;
+        min-width: 100px;
+    }
+
+    .event-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: flex-start;
+
+        gap: 2vh;
+
+        padding-top: 2vh;
+    }
+
+    .event-info>.header-info>.title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    .event-extra-info>p {
+        font-size: .9rem;
+    }
+
+    .event-info>.date {
+        font-size: .9rem;
+
+        position: static;
+    }
+
+    .event-extra-info {
+        display: none;
+    }
+}
+
+/* Móviles grandes */
+@media (min-width: 481px) and (max-width: 600px) {
+    .event-card {
+        width: 90%;
+    }
+
+    .event-card>img {
+        min-height: 100px;
+        min-width: 120px;
+    }
+
+    .event-info>.header-info>.title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    .event-extra-info>p {
+        font-size: .9rem;
+    }
+
+    .event-info>.header-info>.date {
+        font-size: .7rem;
+    }
+
+
+}
+
+
+/* Tablets */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .event-card {
+        width: 75%;
+    }
+
+    .event-card>img {
+        min-height: 110px;
+        min-width: 140px;
+    }
+
+    .event-info>.header-info>.title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    .event-extra-info>p {
+        font-size: .8rem;
+    }
+
+    .event-info>.header-info>.date {
+        font-size: .8rem;
+    }
+
+    .event-extra-info {
+        gap: 1.5vh;
+    }
+
+
+
 }

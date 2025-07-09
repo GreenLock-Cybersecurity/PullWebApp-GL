@@ -41,4 +41,72 @@
     margin: 5px 0 0 0;
 
     color: var(--light-color-gray);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
 }
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    .venues-card-container {
+        width: 80%;
+    }
+
+    .venues-card-container>img {
+        max-height: 90px;
+        max-width: 90px;
+    }
+
+    .venue-info>.title {
+        font-size: .8rem;
+    }
+
+    .venue-info>div>.extra-info {
+        font-size: .7rem;
+    }
+}
+
+/* Móviles grandes */
+@media (min-width: 481px) and (max-width: 600px) {
+    .venues-card-container {
+        width: 90%;
+    }
+
+    .venues-card-container>img {
+        height: 100px;
+        min-width: 100px;
+    }
+
+    .venue-info>.title {
+        font-size: 1rem;
+    }
+
+    .venue-info>div>.extra-info {
+        font-size: 0.8rem;
+    }
+}
+
+/* Tablets */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .venues-card-container {
+        width: 80%;
+    }
+
+    .venues-card-container>img {
+        height: 120px;
+        min-width: 120px;
+    }
+
+    .venue-info>.title {
+        font-size: 1.2rem;
+    }
+
+    .venue-info>div>.extra-info {
+        font-size: 0.9rem;
+    }
+}
+
+/* Escritorio */
+@media (min-width: 1025px) {}

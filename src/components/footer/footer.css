@@ -45,3 +45,37 @@ footer>p {
 
     gap: .5vw;
 }
+
+@media (min-width: 300px) and (max-width: 800px) {
+    footer {
+        height: auto;
+        padding: .5vh 0;
+
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, 1fr);
+
+        gap: .5vh;
+    }
+
+    footer>p {
+        grid-area: 3 / 1 / 4 / 2;
+        text-align: center;
+    }
+
+    .important-documents {
+        grid-area: 1 / 1 / 2 / 2;
+        justify-content: center;
+        margin-left: 0;
+    }
+
+    .social-media {
+        grid-area: 2 / 1 / 3 / 2;
+        justify-content: center;
+        padding-right: 0;
+    }
+
+    .social-media>svg {
+        stroke: 1px;
+    }
+}
