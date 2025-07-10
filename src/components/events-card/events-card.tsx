@@ -2,12 +2,13 @@ import './events-card.css'
 import type { Event } from "../../pages/events-page/events-page";
 import { CalendarIcon, ClockIcon, LocationIcon, HangerIcon } from '../../icons/icons';
 import { InfoComponent } from './info-component';
+import { NavLink } from 'react-router-dom';
 
 export const EventCard = ({ event, isVenueEventPage }: { event: Event, isVenueEventPage?: boolean }) => {
 
     return (
-        <div className={isVenueEventPage ? "event-card venue-event-card" : "event-card"}>
-            <img src={event.imageUrl} alt={event.name} width={120} height={160} />
+        <NavLink to={`/event/${event.id}`} className={isVenueEventPage ? "event-card venue-event-card" : "event-card"}>
+            <img src={event.imageUrl} alt={event.name} width={126} height={160} />
             <div className="event-info">
                 <div className="header-info">
                     <p className='title'>{event.name}</p>
@@ -19,6 +20,6 @@ export const EventCard = ({ event, isVenueEventPage }: { event: Event, isVenueEv
                     <InfoComponent icon={<HangerIcon strokeColor={'var(--light-color-gray)'} />} text={event.dressCode} />
                 </div>
             </div>
-        </div>
+        </NavLink>
     )
 }

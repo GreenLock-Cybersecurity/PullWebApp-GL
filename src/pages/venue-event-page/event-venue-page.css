@@ -1,7 +1,7 @@
 .event-venue-container {
     width: 100%;
 
-    min-height: 81vh;
+    min-height: 85vh;
 
     background-color: #101010;
 
@@ -213,9 +213,11 @@
         display: flex;
         justify-content: center;
 
+        width: 100%;
+
         position: sticky;
 
-        top: 11vh;
+        top: 6vh;
         z-index: 10;
 
         background-color: var(--backgroundColor);
@@ -223,7 +225,6 @@
         padding: 5px 20px;
         border-radius: 5px;
 
-        width: fit-content;
     }
 
     .event-venue-container {

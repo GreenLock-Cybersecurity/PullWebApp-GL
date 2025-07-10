@@ -27,7 +27,7 @@ export const NavBar = () => {
     return (
         <nav>
             <div className="nav-content">
-                <NavLink to={"/home"}><img src={PullLogo} alt='Pull logo' height={60} /></NavLink>
+                <NavLink to={"/home"}><img src={PullLogo} alt='Pull logo' height={40} /></NavLink>
                 <div className="nav-options">
                     <NavLink to={"/venues"} end className={getPageNumber() === 0 ? 'active' : ''}>Venues</NavLink>
                     <NavLink to={"/events"} end className={getPageNumber() === 1 ? 'active' : ''}>Events</NavLink>
