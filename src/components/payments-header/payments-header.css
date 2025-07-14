@@ -94,8 +94,9 @@ h2 {
     }
 
     .event-info-sum-up>img {
-        min-width: 80px;
+        min-width: 100px;
         height: fit-content;
+        max-height: 130px;
     }
 
     h2 {
