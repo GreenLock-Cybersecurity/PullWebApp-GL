@@ -284,7 +284,7 @@
 
         position: sticky;
 
-        top: 11vh;
+        top: 6vh;
         z-index: 10;
 
         background-color: var(--backgroundColor);
