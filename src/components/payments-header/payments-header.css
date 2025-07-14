@@ -75,3 +75,80 @@ h2 {
 
     text-transform: uppercase;
 }
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    .pre-payment-header {
+        width: 90%;
+
+        position: sticky;
+        top: 0vh;
+        z-index: 10;
+
+        background-color: rgb(16, 16, 16, .9);
+
+    }
+
+    .event-info-sum-up {
+        width: 90%;
+    }
+
+    .event-info-sum-up>img {
+        min-width: 80px;
+        height: fit-content;
+    }
+
+    h2 {
+        width: 90%;
+        font-size: 1rem;
+    }
+}
+
+/* Móviles grandes */
+@media (min-width: 481px) and (max-width: 600px) {
+    .pre-payment-header {
+        width: 90%;
+
+        position: sticky;
+        top: 6vh;
+        z-index: 10;
+
+        background-color: rgb(16, 16, 16, .9);
+
+    }
+
+    .event-info-sum-up {
+        width: 90%;
+    }
+
+    .event-info-sum-up>img {
+        min-width: 80px;
+        height: fit-content;
+    }
+
+    h2 {
+        width: 90%;
+        font-size: 1rem;
+    }
+}
+
+/* Tablets */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .pre-payment-header {
+        width: 75%;
+    }
+
+    .event-info-sum-up {
+        width: 75%;
+    }
+
+    .event-info-sum-up>img {
+        min-width: 90px;
+        height: fit-content;
+    }
+
+    h2 {
+        width: 75%;
+        font-size: 1.1rem;
+    }
+}

@@ -88,3 +88,19 @@
     margin: 0;
     padding: 0;
 }
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    .user-details-form>.form-content-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(7, 1fr);
+    }
+
+    .user-details-form>.form-content-container>div {
+        width: 100%;
+    }
+
+    .user-details-form>.form-content-container>div>input {
+        width: calc(100% - 2vw);
+    }
+}

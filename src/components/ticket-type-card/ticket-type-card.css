@@ -115,3 +115,103 @@
 .ticket-type-card-container>div>.buy-ticket-button:hover {
     background-color: #1f2a3e;
 }
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    .ticket-type-card-container {
+        padding: 1vh 2vw;
+    }
+
+    .ticket-type-card-container>.header-ticket-card>div>h3 {
+        font-size: 1.1rem;
+    }
+
+    .ticket-type-card-container>.header-ticket-card>p {
+        font-size: 1rem;
+    }
+
+    .ticket-type-card-container>div>.description,
+    .ticket-type-card-container>div>.buy-ticket-button {
+        font-size: .9rem;
+    }
+
+    .ticket-type-card-container>div>.buy-ticket-button>svg {
+        width: 1.2rem;
+        height: 1.2rem;
+    }
+
+    .ticket-type-card-container>.header-ticket-card>div>p {
+        font-size: .7rem;
+    }
+
+    .div-ticket {
+        width: calc(100% - 4vw);
+    }
+}
+
+/* Móviles grandes */
+@media (min-width: 481px) and (max-width: 600px) {
+    .ticket-type-card-container {
+        padding: 1vh 2vw;
+    }
+
+    .ticket-type-card-container>.header-ticket-card>div>h3 {
+        font-size: 1.1rem;
+    }
+
+    .ticket-type-card-container>.header-ticket-card>p {
+        font-size: 1rem;
+    }
+
+    .ticket-type-card-container>div>.description,
+    .ticket-type-card-container>div>.buy-ticket-button {
+        font-size: .9rem;
+    }
+
+    .ticket-type-card-container>div>.buy-ticket-button>svg {
+        width: 1.2rem;
+        height: 1.2rem;
+    }
+
+    .ticket-type-card-container>.header-ticket-card>div>p {
+        font-size: .7rem;
+    }
+
+    .div-ticket {
+        width: calc(100% - 4vw);
+    }
+}
+
+/* Tablets */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .ticket-type-card-container {
+        padding: 1vh 2vw;
+    }
+
+    .ticket-type-card-container>.header-ticket-card>div>h3 {
+        font-size: 1.1rem;
+    }
+
+    .ticket-type-card-container>.header-ticket-card>p {
+        font-size: 1rem;
+    }
+
+    .ticket-type-card-container>div>.description,
+    .ticket-type-card-container>div>.buy-ticket-button {
+        font-size: .9rem;
+    }
+
+    .ticket-type-card-container>div>.buy-ticket-button>svg {
+        width: 1.2rem;
+        height: 1.2rem;
+    }
+
+
+    .ticket-type-card-container>.header-ticket-card>div>p {
+        font-size: .7rem;
+    }
+
+    .div-ticket {
+        width: calc(100% - 4vw);
+    }
+}
