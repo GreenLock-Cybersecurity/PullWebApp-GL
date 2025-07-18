@@ -1,21 +1,20 @@
 import { NavLink } from 'react-router-dom'
 import { ShoppingCartIcon } from '../../icons/icons'
-import type { TicketDetails } from '../../pages/event-detailed-page/event-detailed-page'
 import './ticket-type-card.css'
+import type { TicketType } from '../../types/types'
 
-export const TicketTypeCard = ({ ticket }: { ticket: TicketDetails }) => {
+export const TicketTypeCard = ({ ticket }: { ticket: TicketType }) => {
     return (
-        <NavLink to={`/event/${ticket.eventId}/tickets/${ticket.id}`} className="ticket-type-card-container">
+        <NavLink to={`/event/${ticket.slug}/tickets/${ticket.ticket_type_id}`} className="ticket-type-card-container">
             <div className="header-ticket-card">
                 <div>
-                    <h3>{ticket.name}</h3>
-                    {ticket.availability < 15 && <p className="availability">¡Quedan pocas entradas! {ticket.availability} disponibles</p>}
+                    <h3>{ticket.ticket_name}</h3>
+                    {ticket.ticket_quantity < 15 && <p className="availability">¡Quedan pocas entradas! {ticket.ticket_quantity} disponibles</p>}
                 </div>
-                <p className="price">Q {ticket.price.toFixed(2)}</p>
+                <p className="price">Q {ticket.ticket_price.toFixed(2)}</p>
             </div>
             <div>
-                <p className="description">{ticket.description}</p>
-                {/* TODO: Botón que redirija a la compra de la entrada ahora lo simulo con un div estilado */}
+                <p className="description">{ticket.ticket_description}</p>
                 <div className='buy-ticket-button'><ShoppingCartIcon strokeColor='#fff' /> Buy</div>
             </div>
         </NavLink>

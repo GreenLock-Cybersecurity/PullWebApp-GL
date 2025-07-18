@@ -1,16 +1,20 @@
 import { NavLink } from 'react-router-dom';
 import { ClockIcon, LocationIcon } from '../../icons/icons';
-import type { Venues } from '../../pages/venues-page/venues-page';
 import './venues-card.css';
+import type { VenueInfo } from '../../types/types';
 
-export const VenuesCard = ({ venue }: { venue: Venues }) => {
+export const VenuesCard = ({ venue }: { venue: VenueInfo }) => {
+
+    const open = venue.open_time.slice(0, 5);
+    const close = venue.close_time.slice(0, 5);
+
     return (
-        <NavLink to={`/venues/events/${venue.id}`} className="venues-card-container">
-            <img src={venue.image} alt={venue.name} width={150} height={150} />
+        <NavLink to={`/venues/events/${venue.slug}`} className="venues-card-container">
+            <img src={venue.image} alt={venue.venue_name} width={150} height={150} />
             <div className="venue-info">
-                <p className='title'>{venue.name}</p>
+                <p className='title'>{venue.venue_name}</p>
                 <div>
-                    <p className='extra-info'><ClockIcon strokeColor={'var(--light-color-gray)'} /> {venue.open} to {venue.close}</p>
+                    <p className='extra-info'><ClockIcon strokeColor={'var(--light-color-gray)'} /> {open} to {close}</p>
                     <p className='extra-info'><LocationIcon strokeColor={'var(--light-color-gray)'} /> {venue.location}</p>
                 </div>
             </div>

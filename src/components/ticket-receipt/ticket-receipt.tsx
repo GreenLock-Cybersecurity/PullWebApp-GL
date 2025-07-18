@@ -1,13 +1,13 @@
 import { NavLink } from 'react-router-dom'
-import type { TicketDetails } from '../../pages/event-detailed-page/event-detailed-page'
 import './ticket-receipt.css'
+import type { TicketType } from '../../types/types'
 
 export const TicketReceipt = (
     { quantity, ticketDetails, url, buttonText, isNavigationLink, onConfirm }
         :
         {
             quantity: number,
-            ticketDetails: TicketDetails,
+            ticketDetails: TicketType,
             url: string,
             buttonText: string,
             isNavigationLink: boolean
@@ -21,8 +21,8 @@ export const TicketReceipt = (
                 <div className="separator" />
                 <div className="receipt-details">
                     <div>
-                        <p>{quantity}*{ticketDetails.name} ({ticketDetails.price})</p>
-                        <p>Q {quantity * ticketDetails.price}</p>
+                        <p>{quantity}*{ticketDetails.ticket_name} ({ticketDetails.ticket_price})</p>
+                        <p>Q {quantity * ticketDetails.ticket_price}</p>
                     </div>
                     <div>
                         <p>Management</p>
@@ -32,7 +32,7 @@ export const TicketReceipt = (
                 <div className="separator" />
                 <div className="receipt-total">
                     <p>Total</p>
-                    <p>Q {quantity * ticketDetails.price + quantity * 8.75}</p>
+                    <p>Q {quantity * ticketDetails.ticket_price + quantity * 8.75}</p>
                 </div>
             </div>
             {/* `/events/${ticketDetails.eventId}/tickets/${ticketTypeId}/${quantity}` */}

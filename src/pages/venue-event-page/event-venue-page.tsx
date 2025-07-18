@@ -2,88 +2,86 @@ import { Layout } from '../../components/layout/layout'
 import './event-venue-page.css'
 
 import { EventCard } from "../../components/events-card/events-card";
-import type { Event } from '../events-page/events-page';
 import { ClockIcon, CurrentLocationIcon, EmailIcon, LocationIcon } from '../../icons/icons';
-
-const events: Event[] = [
-    {
-        id: "1",
-        name: "The Champion Burger",
-        date: "2025-08-31",
-        openingTime: "18:00",
-        closingTime: "22:00",
-        venueName: "Santiago Bernabéu Stadium",
-        imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbdEABBgvFKubXyPNsuBNpbi4wSInMyIwuFQ&s",
-        minAge: 18,
-        dressCode: "Casual"
-    },
-    {
-        id: "2",
-        name: "Aitana Concert - Summer Tour",
-        date: "2025-09-15",
-        openingTime: "19:00",
-        closingTime: "22:00",
-        venueName: "Wanda Metropolitano Stadium",
-        imageUrl: "https://d2cyzdatssrhg7.cloudfront.net/export/sites/default/ets/.content/products/img/00-00087Zm.jpg?__locale=es",
-        minAge: 16,
-        dressCode: "Smart Casual"
-    },
-    {
-        id: "3",
-        name: "Oktoberfest 2025",
-        date: "2025-10-20",
-        openingTime: "12:00",
-        closingTime: "20:00",
-        venueName: "Central Park",
-        imageUrl: "https://sellout-tickets.syd1.cdn.digitaloceanspaces.com/events/events_563_1747157725.png",
-        minAge: 18,
-        dressCode: "Traditional Bavarian"
-    },
-    {
-        id: "4",
-        name: "AWS Summit Madrid 2025",
-        date: "2025-11-10",
-        openingTime: "09:00",
-        closingTime: "17:00",
-        venueName: "Convention Center",
-        imageUrl: "https://www.ifema.es/img/m/aws-logo/img-hb-aws-v2.jpg",
-        minAge: 18,
-        dressCode: "Business Casual"
-    },
-    {
-        id: "5",
-        name: "F1 The Movie Premiere",
-        date: "2025-12-05",
-        openingTime: "19:30",
-        closingTime: "21:30",
-        venueName: "City Theater",
-        imageUrl: "https://img.asmedia.epimg.net/resizer/v2/OOLTDRGJ6NEOZEZKF65342QGYM.jpg?auth=eb452597dfdceab148a1a849b169827795de8bc8907ff5662cb192fcc417324e&width=1472&height=828&smart=true",
-        minAge: 16,
-        dressCode: "Smart Casual"
-    }
-]
+import { useEffect, useState } from 'react';
+import { getEventsByVenue, getVenueDescription, getVenueInfo } from '../../controller/events-page-controller';
+import { useParams } from 'react-router-dom';
+import type { EventInfo, VenueDescription, VenueEventInfo } from '../../types/types';
 
 export const VenueEventsPage = () => {
+
+    const { venueId } = useParams<{ venueId: string }>();
+
+    const [events, setAllEvents] = useState<EventInfo[]>([])
+    const [venueInfo, setVenueInfo] = useState<VenueEventInfo | null>(null);
+    const [venueDescription, setVenueDescription] = useState<VenueDescription | null>(null);
+
+    const [loading, setIsLoading] = useState<boolean>(true)
+
+    useEffect(() => {
+
+        if (!venueId) {
+            setIsLoading(false);
+            return;
+        }
+
+        getEventsByVenue(venueId).then((events) => {
+            setAllEvents(events)
+        }).catch((error) => {
+            console.error("Error fetching events:", error)
+        })
+
+        getVenueInfo(venueId).then((venue) => {
+            setVenueInfo(venue)
+            setIsLoading(false)
+        }).catch((error) => {
+            console.error("Error fetching venue info:", error)
+            setIsLoading(false)
+        })
+
+        getVenueDescription(venueId).then((description) => {
+            setVenueDescription(description)
+        }).catch((error) => {
+            console.error("Error fetching venue description:", error)
+        })
+
+    }, [venueId])
+
+    const [open, setOpen] = useState<string>('');
+    const [close, setClose] = useState<string>('');
+
+    useEffect(() => {
+        if (venueInfo) {
+            setOpen(venueInfo.open_time.slice(0, 5));
+            setClose(venueInfo.close_time.slice(0, 5));
+        }
+    }, [venueInfo]);
+
+
     return (
         <Layout>
             <div className="event-venue-container">
                 <div className="left-side-container">
                     <img src='https://imagenes.elpais.com/resizer/v2/UTNBLPGKLFMIHMSOEHKTMMFU7A.jpg?auth=4625799d1b99c8e1e2c65079f6abbbb8a8ed6e2127f3835a74893c26e06a1910&width=1200' alt='Venue Logo' width={130} height={130} />
-                    <h2>Santiago Bernabeu Stadium</h2>
+                    <h2>{venueInfo?.name}</h2>
                     <div className="location-info">
-                        <p>Capacity: 81,044</p>
-                        <p><ClockIcon strokeColor='var(--light-color-gray)' /> 10:00 AM - 11:00 PM</p>
-                        <p><EmailIcon strokeColor='var(--light-color-gray)' /> realm@example.com</p>
-                        <p><LocationIcon strokeColor='var(--light-color-gray)' />Av. de Concha Espina, 1, 28036 Madrid, Spain</p>
+                        <p>Capacity: {venueInfo?.capacity}</p>
+                        <p><ClockIcon strokeColor='var(--light-color-gray)' /> {open} - {close}</p>
+                        <p><EmailIcon strokeColor='var(--light-color-gray)' /> {venueInfo?.email}</p>
+                        <p><LocationIcon strokeColor='var(--light-color-gray)' />{venueInfo?.long_location}</p>
                         {/* TODO: Implementar esto en lugar de hardcodear las variables `https://www.google.com/maps/search/?api=1&query=${lat},${long}` */}
                         <a href={`https://www.google.com/maps/search/?api=1&query=${40.4531},${-3.6883}`} className='direction-link' target='_blank'> <CurrentLocationIcon fillColor='white' /> Take me there</a>
                     </div>
                 </div>
                 <div className="middle-container">
                     <h2>Santiago Bernabeu Stadium</h2>
-                    {events.map((event) => (
-                        <EventCard key={event.id} event={event} isVenueEventPage />
-                    ))}
+                    {events.length !== 0 && !loading ? events.map((event) => (
+                        <EventCard key={event.event_id} event={event} isVenueEventPage />
+                    )) : events.length === 0 && !loading ? (
+                        <p>No events available</p>
+                    ) : (
+                        <p>Loading events...</p>
+                    )}
                 </div>
                 <div className="right-side-container">
                     <div className="right-side-header">
@@ -91,10 +89,9 @@ export const VenueEventsPage = () => {
                         <p>Find out more about the venue, its history, and upcoming events.</p>
                     </div>
                     <div className="venue-info">
-                        <p>The Santiago Bernabéu Stadium is the home of Real Madrid, one of the most prestigious football clubs in the world. It has a rich history and hosts numerous events throughout the year.</p>
+                        <p className='description'>{venueDescription?.description}</p>
                         <p>For more information, visit the official website or contact us via email.</p>
                     </div>
-
                 </div>
             </div>
         </Layout>

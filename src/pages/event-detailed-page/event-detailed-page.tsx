@@ -1,68 +1,91 @@
+import { useEffect, useState } from 'react';
 import { Layout } from '../../components/layout/layout'
 import { TicketTypeCard } from '../../components/ticket-type-card/ticket-type-card';
 import { HangerIcon, PlusIcon } from '../../icons/icons'
+import type { EventDetailedInfo, TicketType } from '../../types/types';
 import './event-detailed-page.css'
-
-export type TicketDetails = {
-    id: string;
-    eventId: string;
-    name: string;
-    price: number;
-    description: string;
-    availability: number;
-}
-
-const ticketDetails: TicketDetails[] = [
-    {
-        id: '1',
-        eventId: '3',
-        name: 'Early Bid',
-        price: 125,
-        description: 'Pre order your ticket at a discounted price.',
-        availability: 100
-    },
-    {
-        id: '2',
-        eventId: '3',
-        name: 'Primera Fase',
-        price: 150,
-        description: 'Includes two drinks after the 10:00 pm.',
-        availability: 50
-    },
-    {
-        id: '3',
-        eventId: '3',
-        name: 'VIP Experience',
-        price: 200,
-        description: 'VIP access with exclusive seating and 2 free drinks during the event.',
-        availability: 5
-    }
-]
+import { getEventDetailedInfo, getEventTicketsTypes } from '../../controller/purchase-pages-controller';
+import { useParams } from 'react-router-dom';
 
 export const EventDetailedPage = () => {
+
+    const { eventId } = useParams<{ eventId: string }>();
+
+    const [eventDetailedInfo, setEventDetailedInfo] = useState<EventDetailedInfo | null>(null);
+    const [ticketTypes, setTicketTypes] = useState<TicketType[] | []>([]);
+
+    const [loading, setIsLoading] = useState<boolean>(true);
+
+    useEffect(() => {
+
+        if (!eventId) {
+            return;
+        }
+
+        getEventDetailedInfo(eventId)
+            .then(data => {
+                setEventDetailedInfo(data);
+            })
+            .catch(error => {
+                console.error("Error fetching event details:", error);
+            });
+
+        getEventTicketsTypes(eventId)
+            .then(data => {
+                setTicketTypes(data);
+                setIsLoading(false);
+            })
+            .catch(error => {
+                console.error("Error fetching ticket types:", error);
+                setIsLoading(false);
+            });
+
+    }, [eventId])
+
+    const open = eventDetailedInfo?.open_time.slice(0, 5);
+    const close = eventDetailedInfo?.close_time.slice(0, 5);
+
+    const date = new Date(eventDetailedInfo?.date || '');
+
+    const formattedDate = date.toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+
     return (
         <Layout>
             <div className="detailed-event-page">
-                <p className='header-bar'>Aitana Concert - Summer Tour at Wanda Metropolitano</p>
-                <div className="event-header-info">
-                    <img src='https://d2cyzdatssrhg7.cloudfront.net/export/sites/default/ets/.content/products/img/00-00087Zm.jpg?__locale=es' alt='Aitana summer logo' width={200} height={250} />
-                    <div className="header-details">
-                        <h1>Aitana Concert - Summer Tour</h1>
-                        <p className="event-date">September 15, 2025 <span>From 19:00 to 22:00</span></p>
-                        <p className="event-venue">Wanda Metropolitano Stadium</p>
-                        <div className="restrictions">
-                            <p><PlusIcon strokeColor='#101010' /> 18</p>
-                            <p><HangerIcon strokeColor={'#101010'} /> Casual</p>
+                {loading ? <p>Loading event details...</p> : <>
+                    <p className='header-bar'>{eventDetailedInfo?.event_name} at {eventDetailedInfo?.location}</p>
+                    <div className="event-header-info">
+                        <img src={eventDetailedInfo?.event_img} alt={eventDetailedInfo?.event_name} width={200} height={250} />
+                        <div className="header-details">
+                            <h1>{eventDetailedInfo?.event_name}</h1>
+                            <p className="event-date">{formattedDate} <span>From {open} to {close}</span></p>
+                            <p className="event-venue">{eventDetailedInfo?.location}</p>
+                            <div className="restrictions">
+                                {
+                                    eventDetailedInfo?.requirements.map(req => req.name === 'age' ?
+                                        <p key={req.name}><PlusIcon strokeColor='#101010' /> {req.description}</p>
+                                        :
+                                        req.name === 'dress_code' ? <p key={req.name}><HangerIcon strokeColor='#101010' /> {req.description}</p>
+                                            : <p key={req.name}>{req.description}</p>)
+                                }
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="types-of-tickets">
-                    <h2>Choose your type of ticket</h2>
-                    {ticketDetails.map(ticket => (
-                        <TicketTypeCard key={ticket.id} ticket={ticket} />
-                    ))}
-                </div>
+                    <div className="types-of-tickets">
+                        <h2>Choose your type of ticket</h2>
+                        {ticketTypes.map(ticket => (
+                            <TicketTypeCard key={ticket.ticket_type_id} ticket={ticket} />
+                        ))}
+                    </div>
+                </>
+                }
             </div>
+
         </Layout>
     )
 }

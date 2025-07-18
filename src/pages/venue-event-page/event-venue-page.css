@@ -139,6 +139,10 @@
     gap: 1vh;
 }
 
+.description {
+    margin: 0;
+}
+
 /* Móviles pequeños */
 @media (max-width: 480px) {
     .event-venue-container>.middle-container>h2 {

@@ -3,18 +3,10 @@ import { Layout } from '../../components/layout/layout'
 import { PrePaymentHeader } from '../../components/payments-header/payments-header'
 import './payment-page.css'
 import { TicketReceipt } from '../../components/ticket-receipt/ticket-receipt';
-import type { TicketDetails } from '../event-detailed-page/event-detailed-page';
 import { UserDetailsForm } from '../../components/user-details-form/user-details-form';
-import { useRef } from 'react';
-
-const ticketDetails: TicketDetails = {
-    id: '1',
-    eventId: '3',
-    name: 'Early Bid',
-    price: 125,
-    description: 'Pre order your ticket at a discounted price.',
-    availability: 100
-}
+import { useEffect, useRef, useState } from 'react';
+import { getTicketInfo } from '../../controller/purchase-pages-controller';
+import type { TicketType } from '../../types/types';
 
 export const PaymentPage = () => {
 
@@ -28,25 +20,48 @@ export const PaymentPage = () => {
         console.log("Form submitted with data:", data);
     };
 
+    const [ticketDetails, setTicketDetails] = useState<TicketType>({} as TicketType);
+    const [loading, setIsLoading] = useState<boolean>(true);
+
+    useEffect(() => {
+
+        if (!eventId || !ticketTypeId) {
+            return;
+        }
+
+        getTicketInfo(eventId, ticketTypeId)
+            .then(data => {
+                setTicketDetails(data);
+                setIsLoading(false);
+            })
+            .catch(error => {
+                console.error("Error fetching ticket details:", error);
+                setIsLoading(false);
+            });
+
+    }, [eventId, ticketTypeId])
+
     return (
         <Layout>
             <div className="payment-page-container">
-                <PrePaymentHeader url={url} />
-                <div className="payment-user-details">
-                    <div className="user-details">
-                        <UserDetailsForm quantity={Number(quantity!)} ref={formRef} />
+                <PrePaymentHeader url={url} slug={eventId ? eventId : ''} />
+                {loading ? <p>Loading ticket details...</p> :
+                    <div className="payment-user-details">
+                        <div className="user-details">
+                            <UserDetailsForm quantity={Number(quantity!)} ref={formRef} />
+                        </div>
+                        <div className="payment-container">
+                            <TicketReceipt
+                                quantity={Number(quantity!)}
+                                ticketDetails={ticketDetails}
+                                url={``}
+                                buttonText="Confirm Payment"
+                                isNavigationLink={false}
+                                onConfirm={() => formRef.current?.submit(onSubmit)}
+                            />
+                        </div>
                     </div>
-                    <div className="payment-container">
-                        <TicketReceipt
-                            quantity={Number(quantity!)}
-                            ticketDetails={ticketDetails}
-                            url={``}
-                            buttonText="Confirm Payment"
-                            isNavigationLink={false}
-                            onConfirm={() => formRef.current?.submit(onSubmit)}
-                        />
-                    </div>
-                </div>
+                }
             </div>
         </Layout>
     )
