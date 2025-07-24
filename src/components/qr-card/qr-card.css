@@ -25,6 +25,8 @@
     flex-direction: column;
 
     gap: 1vh;
+
+    width: 60%;
 }
 
 .qr-card-container>.personal-info>.name {
