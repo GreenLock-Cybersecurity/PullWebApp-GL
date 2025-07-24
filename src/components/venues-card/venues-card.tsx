@@ -9,7 +9,7 @@ export const VenuesCard = ({ venue }: { venue: VenueInfo }) => {
     const close = venue.close_time.slice(0, 5);
 
     return (
-        <NavLink to={`/venues/events/${venue.slug}`} className="venues-card-container">
+        <NavLink to={`/venues/${venue.slug}/events`} className="venues-card-container">
             <img src={venue.image} alt={venue.venue_name} width={150} height={150} />
             <div className="venue-info">
                 <p className='title'>{venue.venue_name}</p>

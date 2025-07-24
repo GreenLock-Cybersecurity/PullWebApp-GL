@@ -61,3 +61,27 @@ export type TicketType = {
     ticket_description: string;
     ticket_quantity: number;
 }
+
+export type UserInfoTicket = {
+    owner_name: string;
+    owner_last_name: string;
+    owner_email: string;
+    owner_phone: string;
+    owner_dpi: string;
+    owner_birthdate: string;
+}
+
+export type TicketResponse = {
+    message: string;
+    order_id: string;
+}
+
+export type PurchasedTicketInfo = {
+    owner_full_name: string;
+    owner_email: string;
+    event_name: string;
+    event_date: string;
+    qr_token: string;
+    benefits: string;
+    start_time: string;
+}

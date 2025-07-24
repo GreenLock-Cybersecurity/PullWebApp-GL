@@ -5,8 +5,8 @@ import './payment-page.css'
 import { TicketReceipt } from '../../components/ticket-receipt/ticket-receipt';
 import { UserDetailsForm } from '../../components/user-details-form/user-details-form';
 import { useEffect, useRef, useState } from 'react';
-import { getTicketInfo } from '../../controller/purchase-pages-controller';
-import type { TicketType } from '../../types/types';
+import { getTicketInfo, postTicketPurchase } from '../../controller/purchase-pages-controller';
+import type { TicketResponse, TicketType } from '../../types/types';
 
 export const PaymentPage = () => {
 
@@ -18,6 +18,17 @@ export const PaymentPage = () => {
 
     const onSubmit = (data: any) => {
         console.log("Form submitted with data:", data);
+
+        postTicketPurchase(ticketTypeId!, eventId!, data)
+            .then((response: TicketResponse) => {
+                console.log("Ticket purchase successful:", response.message);
+                console.log("Event id:", response.order_id);
+
+                window.location.href = `/wallet/${response.order_id}/${eventId!}`;
+            })
+            .catch(error => {
+                console.error("Error during ticket purchase:", error);
+            });
     };
 
     const [ticketDetails, setTicketDetails] = useState<TicketType>({} as TicketType);

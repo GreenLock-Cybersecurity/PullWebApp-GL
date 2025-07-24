@@ -1,18 +1,6 @@
-// UserDetailsForm.jsx
 import { forwardRef, useImperativeHandle } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import './user-details-form.css';
-
-export type UserData = {
-    name: string;
-    surname: string;
-    dpi: string;
-    telephone: string;
-    email: string;
-    confirmationMail: string;
-    birthdayDate: string;
-}
-
 
 export const UserDetailsForm = forwardRef(({ quantity }: { quantity: number }, ref) => {
 
@@ -25,13 +13,13 @@ export const UserDetailsForm = forwardRef(({ quantity }: { quantity: number }, r
     } = useForm({
         defaultValues: {
             usuarios: Array.from({ length: quantity }, () => ({
-                name: "",
-                surname: "",
-                dpi: "",
-                telephone: "",
-                email: "",
+                owner_name: "",
+                owner_last_name: "",
+                owner_dpi: "",
+                owner_phone: "",
+                owner_email: "",
                 confirmationMail: "",
-                birthdayDate: "",
+                owner_birthdate: "",
             })),
         },
     });
@@ -48,7 +36,7 @@ export const UserDetailsForm = forwardRef(({ quantity }: { quantity: number }, r
     return (
         <form className="user-details-form-container">
             {fields.map((field, index) => {
-                const email = watch(`usuarios.${index}.email`);
+                const email = watch(`usuarios.${index}.owner_email`);
                 return (
                     <div key={field.id} className="user-details-form">
                         <h4>Assistant data &bull; {index + 1}</h4>
@@ -57,25 +45,25 @@ export const UserDetailsForm = forwardRef(({ quantity }: { quantity: number }, r
                             <div>
                                 <label>Name:</label>
                                 <input
-                                    {...register(`usuarios.${index}.name`, { required: "The name is required" })}
+                                    {...register(`usuarios.${index}.owner_name`, { required: "The name is required" })}
                                 />
-                                {errors.usuarios?.[index]?.name && (
-                                    <p className="user-form-error">{errors.usuarios[index].name.message}</p>
+                                {errors.usuarios?.[index]?.owner_name && (
+                                    <p className="user-form-error">{errors.usuarios[index].owner_name.message}</p>
                                 )}
                             </div>
                             <div>
                                 <label>Surname:</label>
                                 <input
-                                    {...register(`usuarios.${index}.surname`, { required: "The surname is required" })}
+                                    {...register(`usuarios.${index}.owner_last_name`, { required: "The surname is required" })}
                                 />
-                                {errors.usuarios?.[index]?.surname && (
-                                    <p className="user-form-error">{errors.usuarios[index].surname.message}</p>
+                                {errors.usuarios?.[index]?.owner_last_name && (
+                                    <p className="user-form-error">{errors.usuarios[index].owner_last_name.message}</p>
                                 )}
                             </div>
                             <div>
                                 <label>DPI number:</label>
                                 <input
-                                    {...register(`usuarios.${index}.dpi`, {
+                                    {...register(`usuarios.${index}.owner_dpi`, {
                                         required: "The DPI number is required",
                                         pattern: {
                                             value: /^[0-9]{13}$/,
@@ -83,14 +71,14 @@ export const UserDetailsForm = forwardRef(({ quantity }: { quantity: number }, r
                                         },
                                     })}
                                 />
-                                {errors.usuarios?.[index]?.dpi && (
-                                    <p className="user-form-error">{errors.usuarios[index].dpi.message}</p>
+                                {errors.usuarios?.[index]?.owner_dpi && (
+                                    <p className="user-form-error">{errors.usuarios[index].owner_dpi.message}</p>
                                 )}
                             </div>
                             <div>
                                 <label>Telephone number:</label>
                                 <input
-                                    {...register(`usuarios.${index}.telephone`, {
+                                    {...register(`usuarios.${index}.owner_phone`, {
                                         required: "The telephone is required",
                                         pattern: {
                                             value: /^[0-9]{8,15}$/,
@@ -98,15 +86,15 @@ export const UserDetailsForm = forwardRef(({ quantity }: { quantity: number }, r
                                         },
                                     })}
                                 />
-                                {errors.usuarios?.[index]?.telephone && (
-                                    <p className="user-form-error">{errors.usuarios[index].telephone.message}</p>
+                                {errors.usuarios?.[index]?.owner_phone && (
+                                    <p className="user-form-error">{errors.usuarios[index].owner_phone.message}</p>
                                 )}
                             </div>
                             <div>
                                 <label>Email:</label>
                                 <input
                                     type="email"
-                                    {...register(`usuarios.${index}.email`, {
+                                    {...register(`usuarios.${index}.owner_email`, {
                                         required: "The email is required",
                                         pattern: {
                                             value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -114,8 +102,8 @@ export const UserDetailsForm = forwardRef(({ quantity }: { quantity: number }, r
                                         },
                                     })}
                                 />
-                                {errors.usuarios?.[index]?.email && (
-                                    <p className="user-form-error">{errors.usuarios[index].email.message}</p>
+                                {errors.usuarios?.[index]?.owner_email && (
+                                    <p className="user-form-error">{errors.usuarios[index].owner_email.message}</p>
                                 )}
                             </div>
                             <div>
@@ -135,12 +123,12 @@ export const UserDetailsForm = forwardRef(({ quantity }: { quantity: number }, r
                                 <label>Birthday date:</label>
                                 <input
                                     type="date"
-                                    {...register(`usuarios.${index}.birthdayDate`, {
+                                    {...register(`usuarios.${index}.owner_birthdate`, {
                                         required: "The birthday date is required",
                                     })}
                                 />
-                                {errors.usuarios?.[index]?.birthdayDate && (
-                                    <p className="user-form-error">{errors.usuarios[index].birthdayDate.message}</p>
+                                {errors.usuarios?.[index]?.owner_birthdate && (
+                                    <p className="user-form-error">{errors.usuarios[index].owner_birthdate.message}</p>
                                 )}
                             </div>
                         </div>
