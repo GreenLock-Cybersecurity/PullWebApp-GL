@@ -1,26 +1,35 @@
-import { forwardRef, useImperativeHandle } from "react";
+import { forwardRef, useEffect, useImperativeHandle } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import './user-details-form.css';
+import type { UsuarioFormData } from "../../types/types";
 
-export const UserDetailsForm = forwardRef(({ quantity }: { quantity: number }, ref) => {
+export const UserDetailsForm = forwardRef(({ quantity, isAbooking, onQuantityChange }: { quantity: number, isAbooking?: boolean, onQuantityChange?: (quantity: number) => void }, ref) => {
+
+    const defaultUsuarios = Array.from({ length: quantity }, () => {
+        const baseUser = {
+            owner_name: "",
+            owner_last_name: "",
+            owner_dpi: "",
+            owner_phone: "",
+            owner_email: "",
+            confirmationMail: "",
+            owner_birthdate: "",
+        };
+
+        return isAbooking ? { ...baseUser, payment_type: "", total_assistant: undefined, assistants: [] } : baseUser;
+    });
 
     const {
         control,
         handleSubmit,
         register,
         watch,
+        setValue,
+        unregister,
         formState: { errors }
-    } = useForm({
+    } = useForm<{ usuarios: UsuarioFormData[] }>({
         defaultValues: {
-            usuarios: Array.from({ length: quantity }, () => ({
-                owner_name: "",
-                owner_last_name: "",
-                owner_dpi: "",
-                owner_phone: "",
-                owner_email: "",
-                confirmationMail: "",
-                owner_birthdate: "",
-            })),
+            usuarios: defaultUsuarios,
         },
     });
 
@@ -33,13 +42,49 @@ export const UserDetailsForm = forwardRef(({ quantity }: { quantity: number }, r
         submit: (onSubmit: any) => handleSubmit(onSubmit)(),
     }));
 
+    const totalAssistants = watch("usuarios.0.total_assistant");
+
+    useEffect(() => {
+        if (onQuantityChange) {
+            if (totalAssistants && totalAssistants > 0) {
+                onQuantityChange(Number(totalAssistants));
+            } else {
+                onQuantityChange(1);
+            }
+        }
+    }, [totalAssistants, onQuantityChange]);
+
+    useImperativeHandle(ref, () => ({
+        submit: (onSubmit: any) => handleSubmit(onSubmit)(),
+    }));
+
+    useEffect(() => {
+        if (totalAssistants) {
+            const currentAssistants = Number(totalAssistants) - 1;
+
+            const currentAssistantsArray = watch("usuarios.0.assistants") || [];
+
+            if (currentAssistantsArray.length > currentAssistants) {
+                for (let i = currentAssistants; i < currentAssistantsArray.length; i++) {
+                    unregister(`usuarios.0.assistants.${i}`);
+                }
+
+                const newArray = currentAssistantsArray.slice(0, currentAssistants);
+                setValue("usuarios.0.assistants", newArray);
+            }
+        }
+    }, [totalAssistants, setValue, unregister, watch]);
+
     return (
         <form className="user-details-form-container">
             {fields.map((field, index) => {
                 const email = watch(`usuarios.${index}.owner_email`);
+                const totalAssistantValue = watch(`usuarios.${index}.total_assistant`);
                 return (
                     <div key={field.id} className="user-details-form">
-                        <h4>Assistant data &bull; {index + 1}</h4>
+                        <h4>
+                            {isAbooking ? 'Booker data' : <>Assistant data &#8226; {index + 1}</>}
+                        </h4>
                         <div className="sep" />
                         <div className="form-content-container">
                             <div>
@@ -131,6 +176,92 @@ export const UserDetailsForm = forwardRef(({ quantity }: { quantity: number }, r
                                     <p className="user-form-error">{errors.usuarios[index].owner_birthdate.message}</p>
                                 )}
                             </div>
+                            {isAbooking && (
+                                <>
+                                    <div>
+                                        <label>Start time:</label>
+                                        <input
+                                            type="time"
+                                            {...register(`usuarios.${index}.start_time`, {
+                                                required: "The start time is required",
+                                            })}
+                                        />
+                                        {errors.usuarios?.[index]?.start_time && (
+                                            <p className="user-form-error">{errors.usuarios[index].start_time.message}</p>
+                                        )}
+                                    </div>
+                                    <div>
+                                        <label>End time:</label>
+                                        <input
+                                            type="time"
+                                            defaultValue={"06:00"}
+                                            {...register(`usuarios.${index}.end_time`, {
+                                                required: "The end time is required",
+                                            })}
+                                        />
+                                        {errors.usuarios?.[index]?.end_time && (
+                                            <p className="user-form-error">{errors.usuarios[index].end_time.message}</p>
+                                        )}
+                                    </div>
+                                    <div>
+                                        <label>Total assistants:</label>
+                                        <input
+                                            type="number"
+                                            min={2}
+                                            {...register(`usuarios.${index}.total_assistant`, {
+                                                required: "Total assistants is required",
+                                                min: {
+                                                    value: 2,
+                                                    message: "At least 2 assistants are required",
+                                                },
+                                            })}
+                                        />
+                                        {errors.usuarios?.[index]?.total_assistant && (
+                                            <p className="user-form-error">{errors.usuarios[index].total_assistant.message}</p>
+                                        )}
+                                    </div>
+
+                                    <div>
+                                        <label>Payment options</label>
+                                        <select
+                                            {...register(`usuarios.${index}.payment_type`, {
+                                                required: "Payment type is required",
+                                                validate: {
+                                                    isNotEmpty: (value) => value !== '' || "Payment type is required",
+                                                },
+                                            })}
+                                        >
+                                            <option value="" disabled>Selecciona tipo de pago</option>
+                                            <option value="2">Per person</option>
+                                            <option value="1">One time payment</option>
+                                        </select>
+
+
+                                        {errors.usuarios?.[index]?.payment_type && (
+                                            <p className="user-form-error">{errors.usuarios[index].payment_type.message}</p>
+                                        )}
+                                    </div>
+
+                                    {totalAssistantValue && totalAssistantValue > 0 && (
+                                        [...Array(Number(totalAssistantValue) - 1)].map((_, i) => (
+                                            <div key={i}>
+                                                <label>Assistant names:</label>
+                                                <input
+                                                    placeholder={`Assistant #${i + 1} name`}
+                                                    {...register(`usuarios.${index}.assistants.${i}`, {
+                                                        required: "Assistant name is required",
+                                                    })}
+                                                />
+                                                {errors.usuarios?.[index]?.assistants?.[i] && (
+                                                    <p className="user-form-error">
+                                                        {errors.usuarios[index].assistants?.[i]?.message}
+                                                    </p>
+                                                )}
+                                            </div>
+                                        ))
+                                    )}
+                                </>
+                            )}
                         </div>
                     </div>
                 );

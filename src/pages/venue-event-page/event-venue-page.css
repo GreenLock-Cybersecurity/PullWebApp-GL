@@ -101,7 +101,19 @@
 
 }
 
-.right-side-container>.right-side-header {
+.left-side-container>.more-venue-info {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 2vh;
+
+    justify-content: center;
+    align-items: center;
+
+}
+
+.left-side-container>.more-venue-info>.info-side-header {
     width: 75%;
 
     display: flex;
@@ -112,21 +124,22 @@
     padding-top: 4vh;
 }
 
-.right-side-container>.right-side-header>.title {
+.left-side-container>.more-venue-info>.info-side-header>.title,
+.right-side-container>.title {
     color: var(--light-color-gray);
     font-size: 1.2rem;
     font-weight: 600;
     margin: 0;
 }
 
-.right-side-container>.right-side-header>p {
+.left-side-container>.more-venue-info>.info-side-header>p {
     color: var(--light-color-gray);
     font-size: 0.9rem;
     font-weight: 400;
     margin: 0;
 }
 
-.right-side-container>.venue-info {
+.left-side-container>.more-venue-info>.venue-info {
     width: 75%;
 
     color: var(--light-color-gray);
@@ -141,6 +154,72 @@
 
 .description {
     margin: 0;
+}
+
+.right-side-container>.reservation-options,
+.right-side-container>.reservation-info-options {
+    width: 75%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.right-side-container>.reservation-options>.sep {
+    width: 1px;
+    height: 50%;
+    background-color: var(--light-color-gray);
+}
+
+.right-side-container>.reservation-options>button {
+
+    width: 35%;
+
+    padding: 5px 0;
+
+    color: var(--light-color-gray);
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: transparent;
+    border: 2px solid transparent;
+
+    transition: border-bottom 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.right-side-container>.reservation-options>button:hover {
+    cursor: pointer;
+    border-bottom: 2px solid var(--light-color-gray);
+
+}
+
+.right-side-container>.reservation-options>button.active {
+    border-bottom: 2px solid white;
+    color: white;
+}
+
+.right-side-container>.reservation-info-options>.description {
+    color: var(--light-color-gray);
+    font-size: 0.9rem;
+    font-weight: 400;
+
+
+    margin: 0;
+}
+
+.reserve-link {
+    width: 70%;
+
+
+    padding: 1vh 0;
+
+    text-align: center;
+
+    border: 2px solid white;
+    color: white;
+    border-radius: 5px;
+
+    text-decoration: none;
 }
 
 /* Móviles pequeños */

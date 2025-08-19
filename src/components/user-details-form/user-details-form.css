@@ -62,8 +62,8 @@
     margin: 0;
 }
 
-.user-details-form>.form-content-container>div>input {
-    width: calc(100% - 2vw);
+.user-details-form>.form-content-container>div>input,
+.user-details-form>.form-content-container>div>select {
 
     padding: 1vh 1vw;
 
@@ -76,7 +76,8 @@
     font-size: 1rem;
 }
 
-.user-details-form>.form-content-container>div>input:focus {
+.user-details-form>.form-content-container>div>input:focus,
+.user-details-form>.form-content-container>div>select:focus {
     outline: none;
     border-color: white;
 }

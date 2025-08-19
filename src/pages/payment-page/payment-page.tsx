@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Layout } from '../../components/layout/layout'
 import { PrePaymentHeader } from '../../components/payments-header/payments-header'
 import './payment-page.css'
@@ -16,15 +16,14 @@ export const PaymentPage = () => {
 
     const formRef = useRef<{ submit: (onSubmit: any) => void }>(null);
 
+    const navigate = useNavigate();
+
     const onSubmit = (data: any) => {
         console.log("Form submitted with data:", data);
 
         postTicketPurchase(ticketTypeId!, eventId!, data)
             .then((response: TicketResponse) => {
-                console.log("Ticket purchase successful:", response.message);
-                console.log("Event id:", response.order_id);
-
-                window.location.href = `/wallet/${response.order_id}/${eventId!}`;
+                navigate(`/wallet/${response.order_id}/${eventId!}`);
             })
             .catch(error => {
                 console.error("Error during ticket purchase:", error);

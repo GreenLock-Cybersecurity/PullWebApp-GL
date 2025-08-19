@@ -1,0 +1,77 @@
+.custom-day-picker {
+    --rdp-cell-size: 42px;
+    --rdp-accent-color: #6b7280;
+    --rdp-background-color: #f3f4f6;
+    --rdp-selected-color: #ffffff;
+
+    /* Borde azul cambiado a blanco */
+    --rdp-outline: 2px solid #ffffff !important;
+    --rdp-outline-selected: 2px solid #ffffff !important;
+
+    border-radius: 12px !important;
+    padding: 1.5rem !important;
+    color: #374151 !important;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif !important;
+
+}
+
+.custom-day-picker .rdp-caption {
+    color: white !important;
+    margin-bottom: 1rem !important;
+}
+
+.custom-day-picker .rdp-caption_label {
+    color: white !important;
+    font-size: 1.25rem !important;
+    font-weight: 500 !important;
+}
+
+/* Días de la semana en blanco */
+.custom-day-picker .rdp-head_cell {
+    color: #ffffff !important;
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+
+}
+
+.custom-day-picker .rdp-day {
+    color: #4b5563 !important;
+    transition: all 0.2s ease !important;
+}
+
+/* Quitar el fondo blanco feo del hover */
+.custom-day-picker .rdp-day:hover {
+    background-color: transparent !important;
+    color: #374151 !important;
+}
+
+.custom-day-picker .rdp-day_selected {
+    background-color: #6b7280 !important;
+    color: white !important;
+}
+
+.custom-day-picker .rdp-day_today {
+    background-color: #e5e7eb !important;
+    color: #1f2937 !important;
+    font-weight: 600 !important;
+}
+
+/* Focus en blanco */
+.custom-day-picker .rdp-day:focus-visible {
+    outline: 2px solid #ffffff !important;
+    outline-offset: 2px !important;
+}
+
+.rdp-nav {
+    width: fit-content;
+}
+
+.rdp-footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding-top: 1vh;
+
+}

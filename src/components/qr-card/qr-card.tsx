@@ -4,8 +4,6 @@ import type { PurchasedTicketInfo } from "../../types/types"
 
 export const QrCard = ({ info }: { info: PurchasedTicketInfo }) => {
 
-    console.log("QR Card Info:", info);
-
     return (
         <div className="qr-card-container">
             <div className="personal-info">

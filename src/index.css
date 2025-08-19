@@ -6,6 +6,8 @@
   --backgroundColor: #151515;
   --background-color-shadow: rgb(21, 21, 21, .99);
   --light-color-gray: #888;
+  --blue-button-color: #007bff;
+  --blue-button-color-hover: #0056b3;
 }
 
 body {

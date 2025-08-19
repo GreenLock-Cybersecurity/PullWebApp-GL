@@ -68,6 +68,8 @@
     font-weight: 500;
 
     text-transform: uppercase;
+
+    max-width: 70%;
 }
 
 .ticket-receipt>.receipt-container>.receipt-details>div>p:first-child {

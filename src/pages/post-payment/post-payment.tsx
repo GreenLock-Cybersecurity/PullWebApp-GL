@@ -19,7 +19,6 @@ export function PostPaymentPage() {
         getTicketPurchaseInfo(eventId!, orderId!)
             .then(data => {
                 setTickets(data.tickets);
-                console.log("Tickets fetched:", data.tickets);
                 setLoading(false);
             })
             .catch(error => {

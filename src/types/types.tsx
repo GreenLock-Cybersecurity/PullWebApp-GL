@@ -85,3 +85,37 @@ export type PurchasedTicketInfo = {
     benefits: string;
     start_time: string;
 }
+
+export type UsuarioFormData = {
+    owner_name: string;
+    owner_last_name: string;
+    owner_dpi: string;
+    owner_phone: string;
+    owner_email: string;
+    confirmationMail: string;
+    owner_birthdate: string;
+    start_time?: string;
+    end_time?: string;
+    total_assistant?: number;
+    payment_type?: string;
+    assistants?: string[];
+};
+
+export type ReservationData = {
+    user: {
+        name: string;
+        surname: string;
+        email: string;
+        dpi: string;
+    };
+    reservation: {
+        venueId: string;
+        date: string;
+        startTime?: string;
+        endTime?: string;
+        guests?: number;
+        table: boolean;
+        paymentTerm: number;
+    };
+    guestNames?: string[];
+};

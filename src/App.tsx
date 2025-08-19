@@ -8,6 +8,9 @@ import { EventDetailedPage } from "./pages/event-detailed-page/event-detailed-pa
 import { PrePurchasePage } from "./pages/pre-purchase-page/pre-purchase-page";
 import { PaymentPage } from "./pages/payment-page/payment-page";
 import { PostPaymentPage } from "./pages/post-payment/post-payment";
+import { ReservationPage } from "./pages/reservation-page/reservation-page";
+import { BookingConfirmationPage } from "./pages/booking-confirmation-page/booking-confirmation-page";
+import { ManageBookingPage } from "./pages/manage-booking-page/manage-booking-page";
 
 export default function App() {
   return (
@@ -18,6 +21,9 @@ export default function App() {
         <Route path="/events" element={<EventsPage />} />
         <Route path="/event/:eventId" element={<EventDetailedPage />} />
         <Route path="/venues/:venueId/events/" element={<VenueEventsPage />} />
+        <Route path="/venue/:venueId/reservation/:reservationDate" element={<ReservationPage />} />
+        <Route path="/venue/:venueId/reservation/:reservationDate/confirmed" element={<BookingConfirmationPage />} />
+        <Route path="/venue/:venueId/reservation/:reservationDate/manage-reservation/:reservationId" element={<ManageBookingPage />} />
         <Route path="/event/:eventId/tickets/:ticketTypeId" element={<PrePurchasePage />} />
         <Route path="/event/:eventId/tickets/:ticketTypeId/:quantity" element={<PaymentPage />} />
         <Route path="/wallet" element={<WalletPage />} />

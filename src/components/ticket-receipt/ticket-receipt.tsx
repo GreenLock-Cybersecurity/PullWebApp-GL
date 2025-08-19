@@ -3,15 +3,16 @@ import './ticket-receipt.css'
 import type { TicketType } from '../../types/types'
 
 export const TicketReceipt = (
-    { quantity, ticketDetails, url, buttonText, isNavigationLink, onConfirm }
+    { quantity, ticketDetails, url, buttonText, isNavigationLink, onConfirm, isLoading }
         :
         {
             quantity: number,
             ticketDetails: TicketType,
             url: string,
             buttonText: string,
-            isNavigationLink: boolean
-            onConfirm?: () => void
+            isNavigationLink?: boolean,
+            onConfirm?: () => void,
+            isLoading?: boolean
         }
 ) => {
     return (
@@ -39,7 +40,7 @@ export const TicketReceipt = (
             {isNavigationLink ?
                 <NavLink to={url} className="receipt-button">{buttonText}</NavLink>
                 :
-                <button className="receipt-button" onClick={onConfirm}>
+                <button className="receipt-button" onClick={onConfirm} disabled={isLoading}>
                     {buttonText}
                 </button>
             }

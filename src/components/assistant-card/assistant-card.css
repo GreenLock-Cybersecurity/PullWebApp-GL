@@ -1,0 +1,44 @@
+.assistant-card {
+    width: 100%;
+
+    height: 40px;
+
+    background-color: var(--backgroundColor);
+
+    border-radius: 5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    overflow: hidden;
+}
+
+.assistant-card>p {
+    color: var(--light-color-gray);
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 1vw;
+}
+
+.assistant-card>div>button {
+    width: 40px;
+    height: 40px;
+
+    background-color: var(--blue-button-color);
+    border: none;
+    cursor: pointer;
+}
+
+.assistant-card>div>.paid {
+    width: 40px;
+    height: 40px;
+
+    background-color: transparent;
+    border: none;
+    cursor: default;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
