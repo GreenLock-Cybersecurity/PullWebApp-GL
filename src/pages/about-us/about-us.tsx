@@ -1,9 +1,9 @@
-import { Layout } from "../../components/layout/layout"
+import { Layout } from "../../components/layout/layout";
 
 export const AboutUsPage = () => {
-    return (
-        <Layout>
-            <h1>Welcome to the About Us Page</h1>
-        </Layout>
-    )
-}
+  return (
+    <Layout>
+      <h1>Work in Progress</h1>
+    </Layout>
+  );
+};

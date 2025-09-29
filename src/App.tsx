@@ -21,11 +21,26 @@ export default function App() {
         <Route path="/events" element={<EventsPage />} />
         <Route path="/event/:eventId" element={<EventDetailedPage />} />
         <Route path="/venues/:venueId/events/" element={<VenueEventsPage />} />
-        <Route path="/venue/:venueId/reservation/:reservationDate" element={<ReservationPage />} />
-        <Route path="/venue/:venueId/reservation/:reservationDate/confirmed" element={<BookingConfirmationPage />} />
-        <Route path="/venue/:venueId/reservation/:reservationDate/manage-reservation/:reservationId" element={<ManageBookingPage />} />
-        <Route path="/event/:eventId/tickets/:ticketTypeId" element={<PrePurchasePage />} />
-        <Route path="/event/:eventId/tickets/:ticketTypeId/:quantity" element={<PaymentPage />} />
+        <Route
+          path="/venue/:venueId/booking/:reservationDate"
+          element={<ReservationPage />}
+        />
+        <Route
+          path="/venue/:venueId/booking/:reservationDate/confirmed"
+          element={<BookingConfirmationPage />}
+        />
+        <Route
+          path="/venue/:venueId/booking/:reservationDate/manage-booking/:reservationId"
+          element={<ManageBookingPage />}
+        />
+        <Route
+          path="/event/:eventId/tickets/:ticketTypeId"
+          element={<PrePurchasePage />}
+        />
+        <Route
+          path="/event/:eventId/tickets/:ticketTypeId/:quantity"
+          element={<PaymentPage />}
+        />
         <Route path="/wallet" element={<WalletPage />} />
         <Route path="/wallet/:orderId/:eventId" element={<PostPaymentPage />} />
         <Route path="/aboutUs" element={<AboutUsPage />} />
@@ -33,5 +48,5 @@ export default function App() {
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
     </>
-  )
+  );
 }
