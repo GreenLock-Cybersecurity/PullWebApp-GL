@@ -66,7 +66,7 @@ export const PaymentPage = () => {
             <div className="user-details">
               <UserDetailsForm quantity={Number(quantity!)} ref={formRef} />
             </div>
-            <div className="payment-container">
+            <div className="super-receipt-container">
               <TicketReceipt
                 quantity={Number(quantity!)}
                 ticketDetails={ticketDetails}
